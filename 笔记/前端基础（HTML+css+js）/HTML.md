@@ -130,3 +130,77 @@
 6. 语义化标签
    1. `div` 块标签 独占一行
    2. `span` 一行显示多个的标签
+
+## HTML5内容
+
+### 内联SVG与Canvas
+
+**简介:** 什么是SVG?
+
+- SVG 指可伸缩矢量图形 (Scalable Vector Graphics)
+- SVG 用于定义用于网络的基于矢量的图形
+- SVG 使用 XML 格式定义图形
+- SVG 图像在放大或改变尺寸的情况下其图形质量不会有损失
+- SVG 是万维网联盟的标准
+- SVG 与 DOM 和 XSL 之类的 W3C 标准是一个整体
+
+**用法:**
+
+>详情见单独文档
+
+### 拖放（Drag 和 Drop）
+
+### `input`新内容
+
+  1. `datalist`标签
+     在输入框添加输入的选项具体用法如下
+
+     ```html
+     <input list="browsers">
+
+        <datalist id="browsers">
+        <option value="Internet Explorer">
+        <option value="Firefox">
+        <option value="Chrome">
+        <option value="Opera">
+        <option value="Safari">
+        </datalist>
+     ```
+
+  2. `keygen`标签,用户验证.暂时没用到过
+
+### web存储
+
+客户端存储数据的两个对象为：
+
+- `localStorage` - 没有时间限制的数据存储
+- `sessionStorage` - 针对一个 session 的数据存储
+
+不管是 localStorage，还是 sessionStorage，可使用的API都相同，常用的有如下几个（以localStorage为例）：
+
+- 保存数据：`localStorage.setItem(key,value);`
+- 读取数据：`localStorage.getItem(key);`
+- 删除单个数据：`localStorage.removeItem(key);`
+- 删除所有数据：`localStorage.clear();`
+- 得到某个索引的`key`：`localStorage.key(index);`
+
+### Web Workers
+
+什么是 Web Worker？
+当在 HTML 页面中执行脚本时，页面的状态是不可响应的，直到脚本已完成。
+
+web worker 是运行在后台的 JavaScript，独立于其他脚本，不会影响页面的性能。您可以继续做任何愿意做的事情：点击、选取内容等等，而此时 web worker 在后台运行
+
+>使用前检查下浏览器是否指支持
+
+```js
+ if(typeof(Worker)!=="undefined")
+   {
+   // 是的! Web worker 支持!
+   // 一些代码.....
+   }
+ else
+   {
+   // //抱歉! Web Worker 不支持
+   } 
+```
