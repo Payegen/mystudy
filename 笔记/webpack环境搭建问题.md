@@ -68,3 +68,14 @@
                         }
                     }
 ```
+
+## @符号在webpack中的配置
+
+```js
+//与module等平级
+resolve:{
+    alias:{
+        '@':path.join(__dirname,'./src/')
+    }
+}
+```

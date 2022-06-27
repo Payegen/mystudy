@@ -52,3 +52,111 @@
 
 6. 调整行的对齐方式（`align-content`）和主轴差不多参考`justify-content`
    > 注意这个是多行的情况下，我们需要调整的属性
+
+## css动画
+
+### 平面转换形态2D
+
+主要就是使用`transfrom`2D转换，位移，旋转，缩放。
+> 在父盒子加个过渡属性先，`transtion: all 2s`
+
+1. 位移**translate**
+    - `transform: translate(水平，垂直)` 。取值可以为像素可以为百分比
+    - 单方向移动translateX，translateY
+
+2. 旋转**roate**
+    - `transform:roate(度数)`
+    - 旋转原点默认为盒子中心，改变原点使用`transform-origin：水平位置 垂直位置` 取值可以为方位名词（LEFT,RIGHT,TOP,BOTTOM,CENTER），像素，百分比。
+
+3. 缩放**scale**
+   1. 取值大于1放大，小于1缩小。（取值为一个值，为等比缩放）
+
+4. 渐变
+    使用background-image属性完成， 一般用于设置盒子的背景。
+    1. `background-image: linear-gradient(blue,green,pink,...)`，用逗号隔开。
+    2. 半透明渐变`background-image: linear-gradient(tansparent,rgba(0,0,0,0.6))`
+
+### 空间转换
+
+相比与2d转换，多一条z轴。正方向对着我们
+
+1. 空间位移
+    1. 用法
+        - `transform:translat3d(x,y,z)`
+        - `transform:translatX()`
+        - `transform:translatY()`
+        - `transform:translatZ()`
+
+    2. 透视属性`perspective`进大远小，如果不开启的话，电脑在屏幕上没有效果。在父盒子开启`perspective: 800-1200`建议取值
+
+2. 空间旋转
+    1. 用法
+        - `transform:rotateX(360deg)`
+        - `transform:rotateY()`
+        - `transform:rotateZ()`
+
+    2. 单开启透视属性只能增加近大远小的的效果，要有3d效果还要开启`transfoem-style:preseve-3d`
+
+3. 空间缩放
+   1. 用法
+        - `transform:scale3d(x,y,z)`
+        - `transform:scaleX()`
+        - `transform:scaleY()`
+        - `transform:scaleZ()`
+
+### 动画`animation`
+
+1. 定义动画：
+
+    ```css
+        @keyframes 动画名{
+            from{}
+            to{}
+        }
+    ```
+
+    ```css
+        @keyframes 动画名{
+            0%{}
+            10%{}
+            ...
+            100%{}
+        }
+    ```
+
+2. 使用动画：
+    `animation: 动画名称 时间`
+
+3. 动画属性：
+    `animation`: 动画名称 时间 运动曲线 延时时间 重复次数 动画方向 执行完毕状态（空格隔开）
+    - 动画名称
+    - 时间
+    - 运动曲线
+        - linear
+        - steps()步长
+    - 延时时间
+    - 重复次数
+        - infinite
+        - 次数
+    - 动画方向
+        - alternate为反方向
+    - 执行完毕状态
+        - 停留 forwards
+        - 回到初始(默认) backwards
+
+    > `animation-play-state：paused` 暂停动画 通常配合hover使用
+
+4. 逐帧动画
+
+    使用steps来完成逐帧动画
+
+5. 组合动画
+
+    ```css
+    animation:
+        动画1 ，
+        动画2 ，
+        动画3...
+    ```
+
+> 逗号隔开就行了里面的属性照样跟在动哈名字后面就行
