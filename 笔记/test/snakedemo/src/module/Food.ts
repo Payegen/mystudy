@@ -1,9 +1,9 @@
 class Food{
 
-    food:HTMLElement;
+    private food:HTMLElement;
 
     constructor(){
-        this.food = document.getElementById('id')!;
+        this.food = document.getElementById('food')!;
     }
 
     get X(){
@@ -11,6 +11,13 @@ class Food{
     }
     get Y(){
         return this.food.offsetTop
+    }
+
+    set X(value){
+        this.food.style.left = value + 'px'
+    }
+    set Y(value){
+        this.food.style.top = value + 'px'
     }
 
 }

@@ -32,11 +32,23 @@ class Snake {
            return
        }
 
+       
        if(value >= 294 || value < 0){
           throw new Error('撞墙了')
        }
 
-       this.head.style.left = value + 'px'
+       if(this.bodies.length>1 && (this.bodies[1] as HTMLElement).offsetLeft === value){
+        //将要赋值的值是第二个元素的位置则为反向移动了
+        if(value < this.X){
+            value = this.X + 10 
+        }else{
+            value = this.X - 10
+        }
+       }
+       this.movebody();
+       this.head.style.left = value + 'px';
+       this.checkHeadBody();
+       
     }
     set Y(value){
         if (this.Y == value){
@@ -46,16 +58,44 @@ class Snake {
         if(value >= 294 || value < 0){
            throw new Error('撞墙了')
         }
- 
-        this.head.style.top = value + 'px'
+
+        if(this.bodies.length>1 && (this.bodies[1] as HTMLElement).offsetTop === value){
+            if(value < this.Y){
+                value = this.Y + 10 
+            }else{
+                value = this.Y - 10
+            }
+         
+        }
+
+        //此处移动身体在移动头部之前，不然第二个元素就和头部重合了
+        this.movebody();
+        this.head.style.top = value + 'px';
+        this.checkHeadBody();
     }
 
     addbodies(){
        this.element.insertAdjacentHTML('beforeend',`<div id="shenti"></div>`)
     }
     movebody(){
-      
+       for (let index = this.bodies.length-1 ; index > 0; index--) {
+        let x = (this.bodies[index-1] as HTMLElement).offsetLeft;
+        let y = (this.bodies[index-1] as HTMLElement).offsetTop;
 
+        (this.bodies[index] as HTMLElement).style.left = x + 'px';
+        (this.bodies[index] as HTMLElement).style.top = y + 'px';
+       }
+       
+    }
+    checkHeadBody(){
+        if(this.bodies.length>4){
+            for(let i=this.bodies.length-1 ; i>0; i--){
+                let bod = (this.bodies[i] as HTMLElement)
+                if(bod.offsetLeft === this.X && bod.offsetTop === this.Y){
+                    throw new Error("自己吃自己了！");
+                }
+            }
+        }
     }
 }
 export default Snake;
