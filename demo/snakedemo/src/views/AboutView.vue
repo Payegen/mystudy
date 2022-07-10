@@ -1,12 +1,12 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>贪吃蛇</h1>
     <Snake></Snake>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Snake from '@/components/Snake.vue';
+import Snake from '../components/Snake.vue';
 
 @Component({
   components: {
