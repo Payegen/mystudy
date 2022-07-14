@@ -20,5 +20,12 @@ class Food{
         this.food.style.top = value + 'px'
     }
 
+    change(){
+        let top = Math.round(Math.random() * 29) * 10;
+        let left = Math.round(Math.random() * 29) * 10;
+
+        this.food.style.left = left + 'px';
+        this.food.style.top = top + 'px';
+    }
 }
 export default Food;

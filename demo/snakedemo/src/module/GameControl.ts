@@ -1,8 +1,10 @@
 import Snake from "./Snake";
 import Food from "./Food";
+import Panel from "./Panel";
 class GameControl{
     snake:Snake;
     food:Food;
+    panel:Panel;
     isLive:boolean =true;
     // 记录移动方向
     target:string = 'ArrowDown';
@@ -10,6 +12,7 @@ class GameControl{
     constructor(){
         this.snake = new Snake();
         this.food = new Food();
+        this.panel = new Panel();
         this.init();
     }
 
@@ -65,7 +68,12 @@ class GameControl{
        
        if(x === this.food.X && y === this.food.Y){
         console.log('吃到了');
+        //改变食物的位置
+        this.food.change();
+        //变长蛇蛇
         this.snake.addbodies();
+        //加分，提升等级
+        this.panel.addScore();
         return true
        }
        return false

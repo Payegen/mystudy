@@ -17,15 +17,15 @@
           </div>
           <!-- 计分区 -->
           <div id="score-panel">
-              <div class="score">
+              <div id="score">
               score:<span>{{score}}</span>
               </div>
-              <div class="level">
+              <div id="level">
               level:<span>{{level}}</span>
               </div>
           </div>
       </div>
-      <button @click="begin">开始</button>
+      <button @click="begin">restart</button>
   </div>
 
 </template>
@@ -34,11 +34,13 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 import GameContol from '../module/GameControl'
+
 @Component
 export default class MyCount extends Vue{
     score: number = 0 ;
     level : number = 1;
 
+    game: GameContol | null = null;
     // count: number = 0;
     // add() {
     //     this.count++;
@@ -50,12 +52,30 @@ export default class MyCount extends Vue{
     //     console.log('新的count值：'+newvalue);        
     // }
     begin(){
-       let game = new GameContol();
-    //    setInterval(()=>{
-    //        console.log(game.target);
-    //    },1000)
+        this.game = new GameContol();
     }
 
+    //监听属性分数
+    @Watch('game.panel.score')
+    onChanged(val:number,old:number){
+        this.score = val
+    }
+    /**
+     * 等同与
+     * watch:{
+     *      game.panel.score:[
+     *          {
+     *              handler: 'onChanged',
+     *              immediate: false,
+     *              deep: false,    
+     *          }
+     *      ]
+     * }
+     * methods:{
+     *     onChanged(val:number,old:number){} 
+     * }
+     * 
+    */
 
 }
 </script>
