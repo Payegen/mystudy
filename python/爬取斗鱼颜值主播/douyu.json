@@ -1,0 +1,29 @@
+{
+  'error_code': 0,
+  'error_msg': 'SUCCESS',
+  'log_id': 304592872121816541,
+  'timestamp': 1557212181,
+  'cached': 0,
+  'result': {
+    'face_num': 1,
+    'face_list': [
+      {
+        'face_token': '7eb08284cfad6ec76cc90b1aece8c3ee',
+        'location': {
+          'left': 285.34,
+          'top': 144.03,
+          'width': 47,
+          'height': 44,
+          'rotation': 35
+        },
+        'face_probability': 1,
+        'angle': {
+          'yaw': 28.7,
+          'pitch': 24,
+          'roll': 24.25
+        },
+        'beauty': 82.96
+      }
+    ]
+  }
+}
